@@ -33,7 +33,7 @@ export function Sidebar() {
     setCurrentPosition(moduleId, sectionId)
 
     // Navigate to the module with section parameter
-    const modulePath = `/${moduleId}`
+    const modulePath = `/course/${moduleId}`
     router.push(`${modulePath}?section=${sectionId}`)
   }
 
