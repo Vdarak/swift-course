@@ -1,0 +1,260 @@
+/**
+ * DASHBOARD PAGE
+ * Main landing page showing course overview and progress
+ */
+
+"use client"
+
+import Link from "next/link"
+import { Header } from "@/components/layout/header"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { ProgressBar } from "@/components/learning/progress-bar"
+import { BookOpen, Target, TrendingUp, Award } from "lucide-react"
+import { useProgress } from "@/hooks/use-progress"
+
+export default function DashboardPage() {
+  const progress = useProgress()
+
+  const module0 = progress.modules?.find((m) => m.id === "module-0")
+  const module1 = progress.modules?.find((m) => m.id === "module-1")
+  const module2 = progress.modules?.find((m) => m.id === "module-2")
+
+  const module0Progress = {
+    completed: module0?.sections.filter((s) => s.completed).length || 0,
+    total: module0?.sections.length || 9,
+  }
+
+  const module1Progress = {
+    completed: module1?.sections.filter((s) => s.completed).length || 0,
+    total: module1?.sections.length || 9,
+  }
+
+  const module2Progress = {
+    completed: module2?.sections.filter((s) => s.completed).length || 0,
+    total: module2?.sections.length || 14,
+  }
+
+  const totalCompleted = module0Progress.completed + module1Progress.completed + module2Progress.completed
+  const totalSections = module0Progress.total + module1Progress.total + module2Progress.total
+  const completionRate = totalSections > 0 ? Math.round((totalCompleted / totalSections) * 100) : 0
+
+  const moduleStatus0 =
+    module0Progress.completed === 0
+      ? "Not Started"
+      : module0Progress.completed === module0Progress.total
+        ? "Completed"
+        : "In Progress"
+
+  const moduleStatus1 =
+    module1Progress.completed === 0
+      ? "Not Started"
+      : module1Progress.completed === module1Progress.total
+        ? "Completed"
+        : "In Progress"
+
+  const moduleStatus2 =
+    module2Progress.completed === 0
+      ? "Not Started"
+      : module2Progress.completed === module2Progress.total
+        ? "Completed"
+        : "In Progress"
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+
+      <main className="container mx-auto px-4 py-8">
+        {/* Welcome Section */}
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold mb-2 text-balance">
+            Welcome to <span className="font-serif italic text-brand-orange">Swift </span>
+            <span className="text-brand-green">Course</span>
+          </h1>
+          <p className="text-lg text-muted-foreground">
+            Strengthen your entrepreneurial and sales success through personality trait assessment
+          </p>
+        </div>
+
+        {/* Stats Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium">Active Courses</CardTitle>
+              <BookOpen className="h-4 w-4 text-brand-green" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">
+                {moduleStatus0 === "In Progress" || moduleStatus1 === "In Progress" || moduleStatus2 === "In Progress"
+                  ? "1-3"
+                  : "1"}
+              </div>
+              <p className="text-xs text-muted-foreground">
+                {moduleStatus0 === "In Progress"
+                  ? "Module 0 in progress"
+                  : moduleStatus1 === "In Progress"
+                    ? "Module 1 in progress"
+                    : "Ready to start"}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium">Completion Rate</CardTitle>
+              <TrendingUp className="h-4 w-4 text-brand-orange" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{completionRate}%</div>
+              <p className="text-xs text-muted-foreground">
+                {completionRate === 0 ? "Start learning today" : "Keep up the great work!"}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium">Learning Streak</CardTitle>
+              <Target className="h-4 w-4 text-brand-green" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">0 days</div>
+              <p className="text-xs text-muted-foreground">Build your streak</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium">Achievements</CardTitle>
+              <Award className="h-4 w-4 text-brand-orange" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">0</div>
+              <p className="text-xs text-muted-foreground">Earn your first badge</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Course Overview */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Main Course Card */}
+          <Card className="lg:col-span-2">
+            <CardHeader>
+              <CardTitle>Sales & Entrepreneurship Mastery</CardTitle>
+              <CardDescription>Master the Big Five Aspects Model and tactical negotiation skills</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {/* Module 0 */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-semibold">Module 0: Introduction</h3>
+                  <span className="text-sm text-muted-foreground">{moduleStatus0}</span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Learn about the Big Five personality model and how it applies to sales success
+                </p>
+                <ProgressBar current={module0Progress.completed} total={module0Progress.total} showPercentage={false} />
+                <Link href="/module-0">
+                  <Button className="mt-4 bg-brand-orange hover:bg-[#e64a19] text-white">
+                    {module0Progress.completed === 0
+                      ? "Start Module 0"
+                      : module0Progress.completed === module0Progress.total
+                        ? "Review Module 0"
+                        : "Continue Module 0"}
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Module 1 */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-semibold">Module 1: Neurobiology & Growth Mindset</h3>
+                  <span className="text-sm text-muted-foreground">{moduleStatus1}</span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Understand the brain science behind goal achievement and develop a growth mindset
+                </p>
+                <ProgressBar current={module1Progress.completed} total={module1Progress.total} showPercentage={false} />
+                <Link href="/module-1">
+                  <Button className="mt-4 bg-brand-green hover:bg-[#143d31] text-white">
+                    {module1Progress.completed === 0
+                      ? "Start Module 1"
+                      : module1Progress.completed === module1Progress.total
+                        ? "Review Module 1"
+                        : "Continue Module 1"}
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Module 2 */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-semibold">Module 2: Learning, Habits & Measurement</h3>
+                  <span className="text-sm text-muted-foreground">{moduleStatus2}</span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Master the learning process, build lasting habits, and track your progress with KPIs
+                </p>
+                <ProgressBar current={module2Progress.completed} total={module2Progress.total} showPercentage={false} />
+                <Link href="/module-2">
+                  <Button className="mt-4 bg-brand-orange hover:bg-[#e64a19] text-white">
+                    {module2Progress.completed === 0
+                      ? "Start Module 2"
+                      : module2Progress.completed === module2Progress.total
+                        ? "Review Module 2"
+                        : "Continue Module 2"}
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Sidebar Info */}
+          <div className="space-y-6">
+            {/* About Card */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">About This Course</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm">
+                <p>
+                  This comprehensive program uses the Big Five Aspects Model (BFAM) to identify your personality
+                  strengths and challenges in sales.
+                </p>
+                <div className="pt-3 border-t">
+                  <div className="flex justify-between mb-2">
+                    <span className="text-muted-foreground">Duration</span>
+                    <span className="font-medium">12 Weeks</span>
+                  </div>
+                  <div className="flex justify-between mb-2">
+                    <span className="text-muted-foreground">Modules</span>
+                    <span className="font-medium">7 Total</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Level</span>
+                    <span className="font-medium">All Levels</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Next Steps Card */}
+            <Card className="bg-gradient-to-br from-brand-green/10 to-brand-orange/10">
+              <CardHeader>
+                <CardTitle className="text-lg">Ready to Begin?</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-sm">
+                  Start with Module 0 to understand the foundation of personality-driven sales success.
+                </p>
+                <Link href="/module-0">
+                  <Button className="w-full bg-brand-green hover:bg-[#143d31] text-white">Begin Learning</Button>
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </main>
+    </div>
+  )
+}
