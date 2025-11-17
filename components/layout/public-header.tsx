@@ -20,12 +20,6 @@ export function PublicHeader() {
           <Link href="/#about" className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors">
             About
           </Link>
-          <Link
-            href="/#pricing"
-            className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors"
-          >
-            Pricing
-          </Link>
           <Link href="/demo" className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors">
             Module 0
           </Link>

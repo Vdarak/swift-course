@@ -31,9 +31,6 @@ export default function HomePage() {
               <Button asChild size="lg" className="bg-brand-orange hover:bg-[#e64a19] text-white text-lg px-8">
                 <Link href="/demo">Try Module 0</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="text-lg px-8">
-                <Link href="#pricing">View Pricing</Link>
-              </Button>
             </div>
           </div>
         </div>
@@ -272,99 +269,6 @@ export default function HomePage() {
               <Button asChild size="lg" className="bg-brand-green hover:bg-brand-green/90 text-white text-lg px-8">
                 <Link href="/demo">Start With Module 0</Link>
               </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section id="pricing" className="py-20 bg-gradient-to-br from-brand-green/5 to-brand-orange/5">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto space-y-12">
-            <div className="text-center space-y-4">
-              <h2 className="text-4xl font-bold">Course Pricing</h2>
-              <p className="text-xl text-muted-foreground">
-                Invest in yourself and unlock your full sales potential
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {/* Demo Option */}
-              <Card className="border-2 border-border">
-                <CardHeader className="text-center pb-8">
-                  <CardTitle className="text-3xl mb-2">Module 0</CardTitle>
-                  <div className="text-5xl font-bold text-brand-green mb-4">$0</div>
-                  <CardDescription className="text-base">
-                    Try Module 0 to experience our approach
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                      <span>Full access to Module 0: Introduction</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                      <span>Interactive personality quiz</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                      <span>Introduction to Big 5 model</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                      <span>AI Help feature included</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-
-              {/* Full Course */}
-              <Card className="border-2 border-brand-orange relative">
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-orange text-white px-4 py-1 rounded-full text-sm font-semibold">
-                  BEST VALUE
-                </div>
-                <CardHeader className="text-center pb-8">
-                  <CardTitle className="text-3xl mb-2">Full Course</CardTitle>
-                  <div className="text-5xl font-bold text-brand-orange mb-4">$497</div>
-                  <CardDescription className="text-base">
-                    Complete access to all modules and features
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-brand-orange mt-0.5 flex-shrink-0" />
-                      <span>All 3 comprehensive modules</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-brand-orange mt-0.5 flex-shrink-0" />
-                      <span>Personalized Big 5 assessment</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-brand-orange mt-0.5 flex-shrink-0" />
-                      <span>Custom action plan based on your personality</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-brand-orange mt-0.5 flex-shrink-0" />
-                      <span>Interactive exercises and quizzes</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-brand-orange mt-0.5 flex-shrink-0" />
-                      <span>AI Help assistant throughout</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-brand-orange mt-0.5 flex-shrink-0" />
-                      <span>Lifetime access to course materials</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-brand-orange mt-0.5 flex-shrink-0" />
-                      <span>Certificate of completion</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </div>
